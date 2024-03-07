@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>demo for vhs</title>
+  <link href="https://cdn.jsdelivr.net/npm/video.js@8.11.7/dist/video-js.css" rel="stylesheet">
+</head>
+<body>
+<video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
+</video-js>
+<script src="https://cdn.jsdelivr.net/npm/video.js@8.11.7/dist/video.min.js"></script>
+<!-- p2p-plugin -->
+<script src="../dist/vhs-p2p-engine.min.js"></script>
+<script>
+  // this demo shows how this SDK works with videojs and videojs-http-streaming
+  var engine;
+  var player = videojs('my_video_1');
+
+  player.on('loadstart', () => {
+    if (engine) {
+      engine.destroy();
+    }
+    engine = new P2PEngineVHS(player, {
+      // trackerZone: 'hk',        // if using Hongkong tracker
+      // trackerZone: 'us',        // if using USA tracker
+      // token: YOUR_TOKEN
+    })
+  });
+
+  // player.src('https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8')
+  // player.src('https://dash.akamaized.net/akamai/test/caption_test/ElephantsDream/elephants_dream_480p_heaac5_1.mpd')
+  player.src('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8')   // live
+  player.play();
+  // player.src('https://storage.googleapis.com/wvtemp/rkuroiwa/hls_single_segment/sintel_1080p_single_segment.m3u8')  // range
+
+
+</script>
+</body>
+</html>
