@@ -11,6 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/video.js@8.11.7/dist/video.min.js"></script>
 <!-- p2p-plugin -->
 <script src="https://cdn.jsdelivr.net/npm/swarmcloud-vhs@latest"></script>
+<h3>p2p info:</h3>
+<p id="peers"></p>
+<p id="info"></p>
 <script>
   // this demo shows how this SDK works with videojs8 and videojs-http-streaming
   var engine;
@@ -31,11 +34,20 @@
       // trackerZone: 'us',        // if using USA tracker
       // token: YOUR_TOKEN
     })
+
+    engine.on('stats', function (stats) {
+      var total = stats.totalHTTPDownloaded + stats.totalP2PDownloaded;
+      document.querySelector('#info').innerText = `p2p ratio: ${Math.round(stats.totalP2PDownloaded/total*100)}%   saved traffic: ${Math.round(stats.totalP2PDownloaded)}KB upload: ${Math.round(stats.totalP2PUploaded)}KB`;
+    })
+
+    engine.on('peers', function (peers) {
+      document.querySelector('#peers').innerText = `peers: ${peers.length}`;
+    })
   });
 
   // player.src('https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8')
   // player.src('https://dash.akamaized.net/akamai/test/caption_test/ElephantsDream/elephants_dream_480p_heaac5_1.mpd')
-  player.src('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8')   // live
+  player.src('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/level_1.m3u8')   // live
   player.play();
   // player.src('https://storage.googleapis.com/wvtemp/rkuroiwa/hls_single_segment/sintel_1080p_single_segment.m3u8')  // range
 
