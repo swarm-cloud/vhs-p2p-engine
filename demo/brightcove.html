@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>demo for brightcove</title>
+
+    <!-- VideoJS should be always called BEFORE the p2p-plugin dependencies -->
+    <link href="//cdn.jsdelivr.net/npm/video.js@8.11.7/dist/video-js.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/video.js@8.11.7/dist/video.min.js" type="application/javascript"></script>
+
+    <!-- Brightcove dependencies should be always called BEFORE the p2p-plugin dependencies -->
+    <script src="//players.brightcove.net/<YOUR_BRIGHTCOVE_ACCOUNT>/default_default/index.min.js"></script>
+
+    <!-- p2p-plugin -->
+    <script src="//cdn.jsdelivr.net/npm/swarmcloud-vhs@latest"></script>
+
+</head>
+<body>
+<video data-account="<YOUR_BRIGHTCOVE_ACCOUNT>"
+       data-player="default"
+       data-embed="default"
+       data-application-id
+       class="video-js"
+       id="video"
+       controls>
+</video>
+
+<script>
+    var playerConfig = {
+        // Add your custom player configuration here
+    };
+
+    var player = videojs("video", playerConfig);
+
+    var engine;
+    player.on('xhr-hooks-ready', () => {
+        if (engine) {
+            engine.destroy();
+        }
+        engine = new P2PEngineVHS(player, {
+            // trackerZone: 'hk',        // if using Hongkong tracker
+            // trackerZone: 'us',        // if using USA tracker
+            // token: YOUR_TOKEN
+        })
+    });
+
+    player.ready(function() {
+        player.src({
+            src: 'https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8',
+            type: 'application/vnd.apple.mpegURL'
+        });
+    });
+</script>
+</body>
+</html>

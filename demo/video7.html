@@ -15,7 +15,6 @@
 <!--<script src="../dist/vhs-p2p-engine.min.js"></script>-->
 <script>
   // this demo shows how this SDK works with videojs7 and videojs-http-streaming
-  var engine;
   var player = videojs('my_video_1', {
     html5: {
       vhs: {
@@ -24,16 +23,11 @@
     }
   });
 
-  player.on('xhr-hooks-ready', () => {
-    if (engine) {
-      engine.destroy();
-    }
-    engine = new P2PEngineVHS(player, {
-      // trackerZone: 'hk',        // if using Hongkong tracker
-      // trackerZone: 'us',        // if using USA tracker
-      // token: YOUR_TOKEN
-    })
-  });
+  var engine = new P2PEngineVHS(player, {
+    // trackerZone: 'hk',        // if using Hongkong tracker
+    // trackerZone: 'us',        // if using USA tracker
+    // token: YOUR_TOKEN
+  })
 
   player.src('https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8')
   // player.src('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8')   // live
