@@ -1,6 +1,6 @@
 {
   "name": "swarmcloud-vhs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Let your viewers become your unlimitedly scalable CDN.",
   "main": "./dist/vhs-p2p-engine.min.js",
   "types": "./dist/vhs-p2p-engine.min.d.ts",
@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "git-push": "git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'release v0.1.3' && git push -u origin main",
+    "git-push": "git add demo && git add package.json && git add README.md && git add Readme_zh.md && git commit -m 'release v0.1.4' && git push -u origin main",
     "git-pull": "git pull origin master"
   },
   "repository": {
