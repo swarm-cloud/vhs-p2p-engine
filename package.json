@@ -1,6 +1,6 @@
 {
   "name": "swarmcloud-vhs",
-  "version": "0.1.7",
+  "version": "0.3.0",
   "description": "Let your viewers become your unlimitedly scalable CDN.",
   "main": "./dist/vhs-p2p-engine.min.js",
   "types": "./dist/vhs-p2p-engine.min.d.ts",

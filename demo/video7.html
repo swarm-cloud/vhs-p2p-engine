@@ -9,7 +9,7 @@
 <video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
 </video-js>
 <script src="https://cdn.jsdelivr.net/npm/video.js@7.1.0/dist/alt/video.core.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@3.14.1/dist/videojs-http-streaming.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@3.17.0/dist/videojs-http-streaming.min.js"></script>
 <!-- p2p-plugin -->
 <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/vhs"></script>
 <!--<script src="../dist/vhs-p2p-engine.min.js"></script>-->
@@ -43,7 +43,7 @@
   })
 
   // player.src('https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8')
-  player.src('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/level_1.m3u8')   // live
+  player.src('https://stream.swarmcloud.net:2096/hls/sintel/playlist.m3u8')   // live
   player.play();
 
 
